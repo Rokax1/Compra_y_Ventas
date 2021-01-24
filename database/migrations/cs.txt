@@ -1,0 +1,27 @@
+class CreateCommissionsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('commissions', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('porcentage');
+            $table->timestamps();
+            $table->softDeletes('deleted_at', 0);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('commissions');
+    }
+}
