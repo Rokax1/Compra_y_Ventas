@@ -22,9 +22,12 @@ Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('Dashboard')->namespace('Dashboard')->middleware('auth')->group(function(){
+Route::prefix('Dashboard')->middleware('auth')->group(function(){
 
-    Route::get('/','DashboardController@index')->name('Dashboard.index');
+    Route::get('/','Dashboard\DashboardController@index')->name('Dashboard.index');
+
+    Route::resource('/Products', 'Products\ProductsController');
+
 
 
 
