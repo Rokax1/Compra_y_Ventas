@@ -110,10 +110,10 @@
                         <ul class="nav nav-treeview">
 
                             <li class="nav-item">
-                                <a href="#" class="nav-link  ">
+                                <a href="{{route('Products.index')}}" class="nav-link  ">
                                     {{-- {{ setActive('indexGiftCard') }} --}}
                                     <i class="fas fa-cog"></i>
-                                    <p>Agregar</p>
+                                    <p>Mis Productos</p>
                                 </a>
                             </li>
 
