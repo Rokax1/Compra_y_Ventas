@@ -103,7 +103,7 @@
                         <a href="" class="nav-link">
                             <i class="fas fa-user-tag"></i>
                             <p>
-                               ejemplo
+                               Productos
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -113,14 +113,14 @@
                                 <a href="#" class="nav-link  ">
                                     {{-- {{ setActive('indexGiftCard') }} --}}
                                     <i class="fas fa-cog"></i>
-                                    <p>Ejemplo 1</p>
+                                    <p>Agregar</p>
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a href="#" class="nav-link ">
                                     <i class="fas fa-cog"></i>
-                                    <p>Ejemplo 2</p>
+                                    <p>Mis Productos</p>
                                 </a>
                             </li>
 
