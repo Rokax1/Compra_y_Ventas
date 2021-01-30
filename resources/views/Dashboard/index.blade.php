@@ -1,6 +1,6 @@
 @extends("layouts.$theme.layout")
 @section('titulo')
-    Administrador xd
+    Dashboard
 @endsection
 
 @section('contenido')
