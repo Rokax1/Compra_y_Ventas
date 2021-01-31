@@ -11,6 +11,6 @@ class ProductUserSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Modelos\Product_user::class,100)->create();
+        factory(App\Modelos\ProductUser::class,100)->create();
     }
 }

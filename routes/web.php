@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','LandingPage\LandingPageController@index')->name('LandingPage.index');
 
+Route::get('/productos/{id}','LandingPage\LandingPageController@show')->name('LandingPage.show');
+
 
 Auth::routes();
 
@@ -27,6 +29,7 @@ Route::prefix('Dashboard')->middleware('auth')->group(function(){
     Route::get('/','Dashboard\DashboardController@index')->name('Dashboard.index');
 
     Route::resource('/Products', 'Products\ProductsController');
+    Route::resource('/Products/{id}', 'Products\ProductsController');
 
 
 

@@ -11,7 +11,7 @@
   </script>
 
   {{--  --}}
-    <title> @yield('titulo','Reportes Bluemix')</title>
+    <title> @yield('titulo','')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{asset("assets/$theme/plugins/fontawesome-free/css/all.min.css")}}">
     <!-- Toastr -->

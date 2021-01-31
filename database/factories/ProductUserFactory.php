@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Modelos\Product_user;
+use App\Modelos\ProductUser;
 use Faker\Generator as Faker;
 
-$factory->define(Product_user::class, function (Faker $faker) {
+$factory->define(ProductUser::class, function (Faker $faker) {
     return [
         'user_id' =>  factory(App\User::class),
         'product_id' =>  factory(App\Modelos\Products::class),

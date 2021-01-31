@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Products\ProductCollection;
 use App\Modelos\Products;
+use App\Modelos\ProductUser;
 use App\User;
 use Illuminate\Http\Request;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class ProductsController extends Controller
 {
@@ -16,11 +19,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $user = User::find(1);
+        $products = ProductUser::where('user_id','=',1)->paginate(5);
 
-        dd($user->productos);
-
-
+        $products->load('product');
 
         return view('Dashboard.Products.index',compact('products'));
     }
@@ -54,7 +55,9 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        Products::find($id);
+
+        return view('Dashboard.Products.show');
     }
 
     /**
@@ -65,7 +68,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

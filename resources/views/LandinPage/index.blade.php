@@ -52,7 +52,7 @@
                         <ul>
                             <li class="active"><a href="#header">Inicio</a></li>
                             <li><a href="#services">Servicios</a></li>
-                            <li><a href="#products">Productos</a></li>
+                            <li><a href="{{route('LandingPage.show',1)}}">Productos</a></li>
                             <li><a href="#about">Nosotros</a></li>
                             <li><a href="#contact">Contacto</a></li>
                         </ul>
