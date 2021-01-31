@@ -4,14 +4,17 @@ namespace App\Modelos;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product_user extends Model
+class Product_User extends Model
 {
-    protected $table ='product_user';
+
+    protected $table = 'product_user';
 
     protected $fillable = [
-        'user_id','product_id'
+        'user_id', 'product_id'
     ];
 
 
 
 }
+
+

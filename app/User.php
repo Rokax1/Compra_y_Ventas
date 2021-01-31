@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Modelos\Product_user;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -38,8 +39,12 @@ class User extends Authenticatable
     ];
 
 
-    public function Productos()
-    {
-        return $this->belongsToMany(Users_Products::class);
-    }
+    // public function productos()
+    // {
+    //     return $this->belongsToMany('App\Modelos\Product_User');
+    // }
+
+    // public function detalle(){
+    //     return $this->hasMany('App\Modelos\Product_User');
+    // }
 }
