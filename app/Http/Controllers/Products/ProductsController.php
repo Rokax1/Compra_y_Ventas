@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Http\Resources\Products\ProductCollection;
 use App\Modelos\Products;
 use App\Modelos\ProductUser;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class ProductsController extends Controller
@@ -19,7 +21,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = ProductUser::where('user_id','=',1)->paginate(5);
+
+
+        $products = ProductUser::where('user_id',Auth::id())->paginate(5);
 
         $products->load('product');
 
@@ -33,7 +37,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('Dashboard.Products.create');
     }
 
     /**
@@ -42,9 +46,14 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+
+
+        Products::create($request->except('file'));
+
+        redirect()->view('Dashboard.Products.index');
+
     }
 
     /**

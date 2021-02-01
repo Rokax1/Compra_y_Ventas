@@ -29,7 +29,7 @@ Route::prefix('Dashboard')->middleware('auth')->group(function(){
     Route::get('/','Dashboard\DashboardController@index')->name('Dashboard.index');
 
     Route::resource('/Products', 'Products\ProductsController');
-    Route::resource('/Products/{id}', 'Products\ProductsController');
+
 
 
 

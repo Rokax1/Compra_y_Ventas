@@ -11,7 +11,7 @@
                 <h1>Listado de productos</h1>
             </div>
             <div class="col-1 mt-3 mb-3">
-                <a class="btn btn-outline-success">
+                <a  href="{{route('Products.create')}}" class="btn btn-outline-success">
                     <i class="fas fa-plus-circle"></i>
                 </a>
             </div>
