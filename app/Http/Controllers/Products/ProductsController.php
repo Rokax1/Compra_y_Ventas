@@ -22,10 +22,7 @@ class ProductsController extends Controller
     public function index()
     {
 
-
-        $products = ProductUser::where('user_id',Auth::id())->paginate(5);
-
-        $products->load('product');
+        $products= User::find(Auth::id())->product()->paginate(5);
 
         return view('Dashboard.Products.index',compact('products'));
     }

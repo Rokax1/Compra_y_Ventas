@@ -33,11 +33,12 @@
                         <tbody>
 
                             @forelse ($products as $product)
+
                                 <tr>
-                                    <th scope="row">{{ $product->product->id }}</th>
-                                    <td>{{ $product->product->name }}</td>
-                                    <td>{{ $product->product->description }}</td>
-                                    <td>{{ $product->product->price }}</td>
+                                    <th scope="row">{{ $product->id }}</th>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->description }}</td>
+                                    <td>{{ $product->price }}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                         <a   class="btn btn-outline-success">
@@ -46,7 +47,7 @@
                                         <a  class="btn btn-outline-danger">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
-                                        <a href="{{route('LandingPage.show',$product->product->id)}}"  class="btn btn-outline-primary">
+                                        <a href="{{route('LandingPage.show',$product->id)}}"  class="btn btn-outline-primary">
                                             <i class="far fa-eye"></i>
                                         </a>
                                         </div>

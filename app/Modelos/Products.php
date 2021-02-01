@@ -13,4 +13,9 @@ class Products extends Model
     protected $casts = [
 
     ];
+
+    public function user()
+    {
+        return $this->belongsToMany('App\User','product_users','product_id','user_id');
+    }
 }
