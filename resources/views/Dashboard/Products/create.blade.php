@@ -4,9 +4,14 @@
 @endsection
 
 @section('styles')
-    <link href="{{ asset("assets/$theme//plugins/Dropzone/dropzone.min.css") }}" rel="stylesheet">
+    <link href="{{ asset("assets/$theme/plugins/bootstrap-fileinput/css/fileinput.min.css") }}" rel="stylesheet">
 @endsection
 
+@section('scriptPlugins')
+
+
+
+@endsection
 
 @section('contenido')
 
@@ -21,56 +26,73 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <form action="{{ route('Products.store') }}" method="POST">
+                <form action="{{ route('Products.store') }}" method="POST" enctype="multipart/form-data" >
                     @csrf
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            <label for="validationDefault01">Nombre Producto  {{$errors}}</label>
-                            <input type="text" class="form-control  {{ $errors->has('name') ? 'is-invalid' : '' }}" name="name" id="name" placeholder="telefono motorola"required value="{{ old('name') }}">
+                            <label for="validationDefault01">Nombre Producto {{ $errors }}</label>
+                            <input type="text" class="form-control  {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                                name="name" id="name" placeholder="telefono motorola" required value="{{ old('name') }}">
                             @error('name')
-                            <div class="invalid-feedback">
-                               {{$message}}
-                              </div>
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="validationDefault02"> precio</label>
-                            <input type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" name="price" id="price" placeholder="99999" required value="{{ old('price') }}">
+                            <input type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}"
+                                name="price" id="price" placeholder="99999" required value="{{ old('price') }}">
                             @error('price')
-                            <div class="invalid-feedback">
-                               {{$message}}
-                              </div>
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
-
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-12 mb-3">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input {{ $errors->has('file') ? 'is-invalid' : '' }}" id="file" name="file[]" multiple required >
-                                <label class="custom-file-label" for="validatedCustomFile">Selecciona las imagenes</label>
-                                @error('file')
-                            <div class="invalid-feedback">
-                               {{$message}}
-                              </div>
-                            @enderror
-
-                            </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="stock"> Stock</label>
+                                <input type="number" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" id="stock" name="stock" value="{{ old('stock') }}" required>
+                                @error('stock')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                         </div>
+
                     </div>
 
                     <div class="form-row">
                         <div class="col-md-12 mb-3">
                             <label for="exampleFormControlTextarea1">Descripcion</label>
-                            <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }} " name="description" id="description"
-                                required >{{ old('description') }}</textarea>
-                                @error('description')
+                            <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }} "
+                                name="description" id="description" required>{{ old('description') }}</textarea>
+                            @error('description')
                                 <div class="invalid-feedback">
-                                   {{$message}}
-                                  </div>
-                                @enderror
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="stock"> imagenes</label>
+
+                                <input type="file"
+                                    class=" {{ $errors->has('file') ? 'is-invalid' : '' }}" id="file"
+                                    name="file[]" multiple required>
+
+                                @error('file')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+
+
+                        </div>
+
+                    </div>
+
+
 
                     <button class="btn btn-primary" type="submit">Crear</button>
                 </form>
@@ -95,23 +117,21 @@
 
 @section('script')
 
-    <script src="{{ asset("assets/$theme/plugins/Dropzone/dropzone.min.js") }}"></script>
+<script src="{{ asset("assets/$theme/plugins/bootstrap-fileinput/js/fileinput.min.js") }}"> </script>
+<script src="{{ asset("assets/$theme/plugins/bootstrap-fileinput/js/locales/es.js") }}"> </script>
+<script src="{{ asset("assets/$theme/plugins/bootstrap-fileinput/themes/fas/theme.min.js") }}"> </script>
 
-    <script>
-        Dropzone.options.myAwesomeDropzone = false;
+<script>
+    $('#file').fileinput({
+        lenguage:'es',
+        allowedFileExtensions:['jpg','jpeg','png'],
+        maxFileSize:1000,
+        showUpload:false,
+        showClose:false,
+        initialPreviewAsData:true,
+        dropZoneEnabled:false,
+        theme:"fas",
+    });
 
-        Dropzone.options.myAwesomeDropzone = {
-            paramName: "file", // The name that will be used to transfer the file
-            maxFilesize: 2, // MB
-            accept: function(file, done) {
-                if (file.name == "justinbieber.jpg") {
-                    done("Naha, you don't.");
-                } else {
-                    done();
-                }
-            }
-        };
-
-    </script>
-
+</script>
 @endsection

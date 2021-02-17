@@ -19,12 +19,12 @@
         </div>
 
         <div class="portfolio-info">
-          <h3>{{$product->product->name}}</h3>
+          <h3>{{$product->name}}</h3>
           <ul>
             <li><strong>Category</strong>: Web design</li>
-            <li><strong>Vendedor</strong>:{{$product->user->name}}</li>
-            <li><strong>valor</strong>:$ {{$product->product->price}}</li>
-            <li><strong>Fecha Termino oferta</strong>: {{$product->product->created_at}}</li>
+            <li><strong>Vendedor</strong>:{{$product->name}}</li>
+            <li><strong>valor</strong>:$ {{$product->price}}</li>
+            <li><strong>Fecha Termino oferta</strong>: {{$product->created_at}}</li>
             <li> <a href="" class="btn btn-success"> Añadir al carrito <i class="fas fa-cart-plus"></i></a> </li>
 
           </ul>
@@ -33,9 +33,9 @@
       </div>
 
       <div class="portfolio-description">
-        <h2>{{$product->product->name}}</h2>
+        <h2>{{$product->name}}</h2>
         <p>
-        {{$product->product->description}}
+        {{$product->description}}
         </p>
       </div>
 

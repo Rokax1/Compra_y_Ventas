@@ -86,7 +86,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"> hola, {{ session()->get('nombre') }} </a>
+                <a href="#" class="d-block"> hola, {{ Auth::user()->name }} </a>
             </div>
         </div>
 
@@ -118,9 +118,9 @@
                             </li>
 
                             <li class="nav-item">
-                                <a href="#" class="nav-link ">
+                                <a href="{{route('Products.papelera')}}" class="nav-link ">
                                     <i class="fas fa-cog"></i>
-                                    <p>Mis Productos</p>
+                                    <p>Papelera</p>
                                 </a>
                             </li>
 

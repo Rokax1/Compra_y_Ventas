@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
-use App\Http\Resources\Products\ProductCollection;
-use App\Modelos\Products;
-use App\Modelos\ProductUser;
+use App\Modelos\Product;
+use App\Modelos\Images;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
 
 class ProductsController extends Controller
 {
@@ -22,9 +21,10 @@ class ProductsController extends Controller
     public function index()
     {
 
-        $products= User::find(Auth::id())->product()->paginate(5);
+        $products = User::find(Auth::id())->product()->paginate(5);
 
-        return view('Dashboard.Products.index',compact('products'));
+        //dd($products);
+        return view('Dashboard.Products.index', compact('products'));
     }
 
     /**
@@ -45,12 +45,21 @@ class ProductsController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        //dd($request->file('file'));
+        $user = User::find(Auth::id());
+        $product = Product::create($request->except('file'));
+        $user->product()->attach($product->id);
+        //obteniendo imagenes
+        $images = $request->file;
+        //guardar imagenes optimizar porfa
+        foreach ($images as $key => $img) {
+            Images::create([
+                "product_id" => $product->id,
+                "url" => $img->store('public/' . Auth::user()->name . '_' . Auth::user()->id)
+            ]);
+        }
 
-
-        Products::create($request->except('file'));
-
-        redirect()->view('Dashboard.Products.index');
-
+        return redirect()->route('Products.index');
     }
 
     /**
@@ -61,9 +70,10 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        Products::find($id);
+        //dd($product);
+        //  Product::find($id);
 
-        return view('Dashboard.Products.show');
+        // return view('Dashboard.Products.show');
     }
 
     /**
@@ -74,7 +84,22 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
+        $product = Product::find($id);
+        $product->load('images');
 
+        $images = Product::find($id)->images;
+
+        // dd($images);
+        $imagesURL = [];
+
+        foreach ($images as $key => $img) {
+            //dd($img->url);
+            array_push($imagesURL, $img->url);
+        }
+        //dd($imagesURL);
+
+
+        return view('Dashboard.Products.edit', compact('product', 'imagesURL'));
     }
 
     /**
@@ -84,9 +109,14 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $product = User::find(Auth::id())->product()->find($id);
+
+        $product->update($request->except('file'));
+
+
+        return redirect()->route('Products.index');
     }
 
     /**
@@ -95,8 +125,54 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        //dd($request->id_product);
+        $product = User::find(Auth::id())->product()->find($request->id_product);
+        $product->delete();
+
+        return back();
+    }
+
+    public function restore($id)
+    {
+        $product = User::find(Auth::id())->product()->onlyTrashed()->find($id);
+
+        //dd($product);
+        if (!$product) {
+            abort(404);
+        }
+        $product->restore();
+
+        return redirect()->route('Products.papelera');
+    }
+
+
+    public function indexRestore()
+    {
+        $products = User::find(Auth::id())->product()->onlyTrashed()->paginate(5);
+
+        return view('Dashboard.Products.restore', compact('products'));
+    }
+
+    public function getImages(Request $request, $id)
+    {
+
+        if ($request->ajax()) {
+
+
+            $images = Product::find($id)->images;
+
+            // dd($images);
+            $imagesURL = [];
+
+            foreach ($images as $key => $img) {
+                //dd($img);
+                array_push($imagesURL, $img->url);
+            }
+
+
+            return response()->json($imagesURL);
+        }
     }
 }

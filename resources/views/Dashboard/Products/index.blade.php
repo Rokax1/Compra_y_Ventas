@@ -27,6 +27,8 @@
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Descripcion</th>
                                 <th scope="col">Precio</th>
+                                <th scope="col">Stock</th>
+
                                 <th scope="col">Opciones</th>
                             </tr>
                         </thead>
@@ -39,12 +41,15 @@
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->description }}</td>
                                     <td>{{ $product->price }}</td>
+                                    <td>{{ $product->stock }}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a   class="btn btn-outline-success">
+                                        <a  href="{{route('Products.edit',$product->id)}}"  class="btn btn-outline-success">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a  class="btn btn-outline-danger">
+
+
+                                        <a  class="btn btn-outline-danger" data-idproduct="{{$product->id}}" data-nameproduct="{{$product->name}}" data-toggle="modal" data-target="#delete">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
                                         <a href="{{route('LandingPage.show',$product->id)}}"  class="btn btn-outline-primary">
@@ -64,8 +69,24 @@
                         </tbody>
                     </table>
                     {{ $products->links() }}
+
+                    @include('Layouts/components/modal')
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script>
+       $('#delete').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget)
+      var prod_id =   button.data('idproduct')
+      var prod_name  =  button.data('nameproduct')
+      ///console.log(prod_name);
+      var modal = $(this)
+      modal.find('.modal-footer #id_product').val(prod_id);
+      $("#prod_name").text(prod_name);
+       })
+    </script>
+
 @endsection

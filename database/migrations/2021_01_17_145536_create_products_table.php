@@ -15,10 +15,11 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->mediumText('description');
-            //$table->string('photo_url');
-            $table->double('price', 11, 2);
+            $table->string('name')->default('producto ejemplo');
+            $table->mediumText('description')->default('descripcion ejemplo');
+            $table->bigInteger('stock')->default(0);
+            $table->double('price', 11, 2)->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

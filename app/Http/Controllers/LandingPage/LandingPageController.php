@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\LandingPage;
 
 use App\Http\Controllers\Controller;
+use App\Modelos\Product;
 use App\Modelos\Products;
 use App\Modelos\ProductUser;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LandingPageController extends Controller
 {
@@ -16,11 +19,7 @@ class LandingPageController extends Controller
 
     public function show($id){
 
-        $detalle = ProductUser::where('product_id',$id)->get();
-
-        $detalle->load('product','user');
-
-        $product = $detalle[0];
+        $product=User::find(Auth::id())->product()->find($id);
 
 
         return view('LandinPage.show',compact('product'));

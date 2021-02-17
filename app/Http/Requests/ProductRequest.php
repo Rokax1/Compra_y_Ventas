@@ -28,6 +28,7 @@ class ProductRequest extends FormRequest
             'name'=>['required','max:50','min:2'],
             'description'=>['required','min:2'],
             'price'=>['required','min:2','numeric'],
+            'stock'=>['required','min:1','numeric'],
             'file.*' => 'mimes:jpeg,png,jpg'
         ];
         // foreach($this->request->get('file') as $key => $val)
