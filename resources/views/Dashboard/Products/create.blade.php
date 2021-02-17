@@ -30,7 +30,7 @@
                     @csrf
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            <label for="validationDefault01">Nombre Producto {{ $errors }}</label>
+                            <label for="validationDefault01">Nombre Producto </label>
                             <input type="text" class="form-control  {{ $errors->has('name') ? 'is-invalid' : '' }}"
                                 name="name" id="name" placeholder="telefono motorola" required value="{{ old('name') }}">
                             @error('name')
