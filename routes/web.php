@@ -27,9 +27,15 @@ Route::prefix('Dashboard')->middleware('auth')->group(function(){
 
     Route::get('/','Dashboard\DashboardController@index')->name('Dashboard.index');
 
+    //rutas productos
     Route::get('/Restore/{id}', 'Products\ProductsController@restore')->name('Products.restore');
     Route::get('/PapeleraProductos', 'Products\ProductsController@indexRestore')->name('Products.papelera');
     Route::resource('/Products', 'Products\ProductsController');
+
+    //rutas categorias
+    Route::resource('/Categories', 'Categories\CategoriesController');
+
+
 
 
 

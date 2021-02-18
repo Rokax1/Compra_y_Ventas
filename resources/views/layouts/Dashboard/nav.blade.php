@@ -127,6 +127,34 @@
                         </ul>
                     </li>
 
+                    <li class="nav-item has-treeview">
+                        <a href="" class="nav-link">
+                            <i class="fas fa-user-tag"></i>
+                            <p>
+                               Categorias
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+
+                            <li class="nav-item">
+                                <a href="{{route('Categories.index')}}" class="nav-link  ">
+                                    {{-- {{ setActive('indexGiftCard') }} --}}
+                                    <i class="fas fa-cog"></i>
+                                    <p>Mis Categorias</p>
+                                </a>
+                            </li>
+
+                            {{-- <li class="nav-item">
+                                <a href="{{route('Categories.papelera')}}" class="nav-link ">
+                                    <i class="fas fa-cog"></i>
+                                    <p>Papelera</p>
+                                </a>
+                            </li> --}}
+
+                        </ul>
+                    </li>
+
 
                             {{-- fin ult --}}
                 </ul>
