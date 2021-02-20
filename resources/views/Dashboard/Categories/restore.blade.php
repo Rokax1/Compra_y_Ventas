@@ -40,24 +40,18 @@
 
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a  href="{{route('Products.edit',$category->id)}}"  class="btn btn-outline-success">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
+                                            <a  href="{{route('Categories.restore',$categories->id)}}"  class="btn btn-outline-success">
+                                                <i class="fas fa-trash-restore"></i>
+                                            </a>
 
 
-                                        <a  class="btn btn-outline-danger" data-idcat="{{$category->id}}" data-cat="{{$category->name}}" data-toggle="modal" data-target="#delete">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
-                                        {{-- <a href="{{route('LandingPage.show',$category->id)}}"  class="btn btn-outline-primary">
-                                            <i class="far fa-eye"></i>
-                                        </a> --}}
                                         </div>
 
                                     </td>
 
                                 </tr>
                             @empty
-                                <h1>No hay categorias registradas</h1>
+                                <h1>No hay categorias para restaurar</h1>
                             @endforelse
 
 
@@ -66,23 +60,13 @@
                     </table>
                     {{ $categories->links() }}
 
-                    @include('Layouts/components/modalCategory')
+
                 </div>
             </div>
         </div>
     </div>
 @endsection
 @section('script')
-    <script>
-       $('#delete').on('show.bs.modal', function (event) {
-      var button = $(event.relatedTarget)
-      var idcat =   button.data('idcat')
-      var cat_name  =  button.data('cat')
-      ///console.log(prod_name);
-      var modal = $(this)
-      modal.find('.modal-footer #id_cat').val(idcat);
-      $("#prod_name").text(cat_name);
-       })
-    </script>
+
 
 @endsection

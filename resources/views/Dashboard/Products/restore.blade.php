@@ -57,7 +57,7 @@
 
                                 </tr>
                             @empty
-                                <h1>No hay productos registrados</h1>
+                                <h1>No hay productos para restaurar</h1>
                             @endforelse
 
 
