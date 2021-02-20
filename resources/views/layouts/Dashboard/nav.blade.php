@@ -145,12 +145,12 @@
                                 </a>
                             </li>
 
-                            {{-- <li class="nav-item">
+                            <li class="nav-item">
                                 <a href="{{route('Categories.papelera')}}" class="nav-link ">
                                     <i class="fas fa-cog"></i>
                                     <p>Papelera</p>
                                 </a>
-                            </li> --}}
+                            </li>
 
                         </ul>
                     </li>

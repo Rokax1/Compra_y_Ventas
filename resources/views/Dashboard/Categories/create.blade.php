@@ -40,10 +40,10 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="validationDefault02"> comisión</label>
-                            <input type="number" class="form-control {{ $errors->has('comission') ? 'is-invalid' : '' }}"
-                                name="comission" id="comission" placeholder="99999" required
+                            <input type="number" class="form-control {{ $errors->has('commission') ? 'is-invalid' : '' }}"
+                                name="commission" id="comission" placeholder="99999" required
                                 value="{{ old('comission') }}">
-                            @error('comission')
+                            @error('commission')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

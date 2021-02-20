@@ -10,11 +10,7 @@
             <div class="col-11 mt-3 mb-3">
                 <h1>Listado de Categorias</h1>
             </div>
-            <div class="col-1 mt-3 mb-3">
-                <a  href="{{route('Categories.create')}}" class="btn btn-outline-success">
-                    <i class="fas fa-plus-circle"></i>
-                </a>
-            </div>
+
           </div>
 
         <div class="row">
@@ -40,7 +36,7 @@
 
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <a  href="{{route('Categories.restore',$categories->id)}}"  class="btn btn-outline-success">
+                                            <a  href="{{route('Categories.restore',$category->id)}}"  class="btn btn-outline-success">
                                                 <i class="fas fa-trash-restore"></i>
                                             </a>
 

@@ -33,6 +33,8 @@ Route::prefix('Dashboard')->middleware('auth')->group(function(){
     Route::resource('/Products', 'Products\ProductsController');
 
     //rutas categorias
+    Route::get('/Restore/{id}', 'Categories\CategoriesController@restore')->name('Categories.restore');
+    Route::get('/PapeleraCategorias', 'Categories\CategoriesController@indexRestore')->name('Categories.papelera');
     Route::resource('/Categories', 'Categories\CategoriesController');
 
 

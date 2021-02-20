@@ -40,7 +40,7 @@
 
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a  href="{{route('Products.edit',$category->id)}}"  class="btn btn-outline-success">
+                                        <a  href="{{route('Categories.edit',$category->id)}}"  class="btn btn-outline-success">
                                             <i class="fas fa-edit"></i>
                                         </a>
 

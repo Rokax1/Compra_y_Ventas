@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Categories;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use Illuminate\Http\Request;
 use App\Modelos\Categories;
 
@@ -27,7 +28,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('Dashboard.Categories.create');
     }
 
     /**
@@ -36,9 +37,11 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $category = Categories::create($request->all());
+
+        return redirect()->route('Categories.index');
     }
 
     /**
@@ -49,7 +52,7 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -60,7 +63,9 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Categories::find($id);
+
+        return view('Dashboard.Categories.edit',compact('category'));
     }
 
     /**
@@ -70,9 +75,13 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        //dd($request->all());
+        $category = Categories::find($id);
+        $category->update($request->only('name','commission'));
+
+        return redirect()->route('Categories.index');
     }
 
     /**
@@ -81,8 +90,32 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+
+        $category = Categories::find($request->id_cat);
+        $category->delete();
+
+        return back();
+    }
+
+    public function restore($id)
+    {
+        $category = Categories::onlyTrashed()->find($id);
+
+        //dd($product);
+        if (!$category) {
+            abort(404);
+        }
+        $category->restore();
+
+        return redirect()->route('Categories.papelera');
+    }
+
+    public function indexRestore()
+    {
+        $categories = Categories::onlyTrashed()->paginate(5);
+
+        return view('Dashboard.Categories.restore', compact('categories'));
     }
 }

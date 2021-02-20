@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->float('commission');
             // $table->foreignId('commission_id')->constrained()->nullable()->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

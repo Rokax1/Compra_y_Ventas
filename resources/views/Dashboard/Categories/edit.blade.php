@@ -26,10 +26,11 @@
         <div class="row">
             <div class="col-md-12">
                 <form action="{{ route('Categories.update',$category->id) }}" method="POST">
+                    @method('PUT')
                     @csrf
                     <div class="form-row">
                         <div class="col-md-6 mb-3">
-                            <label for="validationDefault01">Nombre Categoria </label>
+                            <label for="validationDefault01">Nombre Categoria {{$errors}}</label>
                             <input type="text" class="form-control  {{ $errors->has('name') ? 'is-invalid' : '' }}"
                                 name="name" id="name" placeholder="Telefonos" required value="{{$category->name}}">
                             @error('name')
@@ -40,10 +41,10 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="validationDefault02"> comisión</label>
-                            <input type="number" class="form-control {{ $errors->has('comission') ? 'is-invalid' : '' }}"
-                                name="comission" id="comission" placeholder="99999" required
+                            <input type="number" class="form-control {{ $errors->has('commission') ? 'is-invalid' : '' }}"
+                                name="commission" id="commission" placeholder="99999" required
                                 value="{{$category->commission}}">
-                            @error('comission')
+                            @error('commission')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
