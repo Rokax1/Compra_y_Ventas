@@ -50,7 +50,7 @@
                             @enderror
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="stock"> Stock</label>
+                            <label for="stock"> Stock </label>
                                 <input type="number" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" id="stock" name="stock" value="{{ old('stock') }}" required>
                                 @error('stock')
                                     <div class="invalid-feedback">
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-9 mb-3">
                             <label for="exampleFormControlTextarea1">Descripcion</label>
                             <textarea class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }} "
                                 name="description" id="description" required>{{ old('description') }}</textarea>
@@ -71,6 +71,23 @@
                                     {{ $message }}
                                 </div>
                             @enderror
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="stock"> Categoria </label>
+                                <select name="category" id="Category" class="form-control {{ $errors->has('category') ? 'is-invalid' : '' }} " >
+                                    <option value="">Selecciona una categoria</option>
+                                    @forelse ($categories as $category)
+                                    <option value="{{$category->id}}" {{old('category') ? 'selected' : ''}} >{{$category->name}}</option>
+                                    @empty
+
+                                    @endforelse
+
+                                </select>
+                                @error('category')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                         </div>
                     </div>
                     <div class="form-row">

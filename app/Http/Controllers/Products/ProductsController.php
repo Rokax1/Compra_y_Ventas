@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Modelos\Categories;
 use App\Modelos\Product;
 use App\Modelos\Images;
 use App\User;
@@ -34,7 +35,10 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('Dashboard.Products.create');
+        $categories = Categories::all();
+        //dd( $categories);
+        return view('Dashboard.Products.create',compact('categories'));
+
     }
 
     /**
@@ -45,7 +49,7 @@ class ProductsController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        //dd($request->file('file'));
+        //dd($request->all());
         $user = User::find(Auth::id());
         $product = Product::create($request->except('file'));
         $user->product()->attach($product->id);
@@ -89,6 +93,7 @@ class ProductsController extends Controller
 
         $images = Product::find($id)->images;
 
+        $categories = Categories::all();
         // dd($images);
         $imagesURL = [];
 
@@ -99,7 +104,7 @@ class ProductsController extends Controller
         //dd($imagesURL);
 
 
-        return view('Dashboard.Products.edit', compact('product', 'imagesURL'));
+        return view('Dashboard.Products.edit', compact('product', 'imagesURL','categories'));
     }
 
     /**
