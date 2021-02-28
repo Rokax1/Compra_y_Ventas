@@ -16,6 +16,7 @@
 @section('contenido')
 
     <div class="container">
+
         <div class="row justify-content-between">
             <div class="col-11 mt-3 mb-3">
                 <h1>Creacion de producto</h1>

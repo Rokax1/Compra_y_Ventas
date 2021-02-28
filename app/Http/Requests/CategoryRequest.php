@@ -25,7 +25,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name'=>['required','max:50','min:2'],
-            'commission'=>['required','min:2','numeric'],
+            //'commission'=>['required','min:2','numeric'],
         ];
     }
 }

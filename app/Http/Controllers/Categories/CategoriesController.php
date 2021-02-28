@@ -16,7 +16,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Categories::paginate(5);
+        $categories = Categories::where('parent_id',null)->paginate(5);
 
         return view('Dashboard.Categories.index', compact('categories'));
     }
@@ -52,7 +52,10 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
+        $categories = Categories::find($id)->children()->paginate(5);
+        $idCategory=$id;
 
+        return view('Dashboard.Categories.show',compact('categories','idCategory'));
     }
 
     /**

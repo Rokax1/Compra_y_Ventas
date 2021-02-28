@@ -16,8 +16,9 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->float('commission');
-            // $table->foreignId('commission_id')->constrained()->nullable()->default(0);
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->foreign('parent_id')->references('id')->on('categories')->onDelete('cascade');
+            // $table->foreignId('commission_id')->constrained();
             $table->softDeletes();
             $table->timestamps();
         });

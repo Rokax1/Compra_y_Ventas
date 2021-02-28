@@ -35,6 +35,8 @@ Route::prefix('Dashboard')->middleware('auth')->group(function(){
     //rutas categorias
     Route::get('/Restore/{id}', 'Categories\CategoriesController@restore')->name('Categories.restore');
     Route::get('/PapeleraCategorias', 'Categories\CategoriesController@indexRestore')->name('Categories.papelera');
+    Route::get('/Categories/create/{id}/Subcategoria', 'Categories\SubCategoriesController@create')->name('SubCategory.create');
+    Route::Post('/Categories/create/{id}/Subcategoria/Store', 'Categories\SubCategoriesController@store')->name('SubCategory.Store');
     Route::resource('/Categories', 'Categories\CategoriesController');
 
 

@@ -10,6 +10,15 @@ class Categories extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name','commission'
+        'name','parent_id'
     ];
+
+    public function parent() {
+        return $this->belongsTo('App\Modelos\Categories', 'parent_id');
+    }
+
+
+    public function children() {
+        return $this->hasMany('App\Modelos\Categories', 'parent_id','id');
+    }
 }
